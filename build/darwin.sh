@@ -4,11 +4,13 @@ source build/setup-darwin.sh
 if [ "$?" != "0" ] ; then
  exit 1
 fi
-brew install pkg-config autoconf automake
+brew install pkg-config autoconf@2.69 automake
 if [ "$?" != "0" ] ; then
  echo "Install failed"
  exit 1
 fi
+
+export PATH="/usr/local/opt/autoconf@2.69/bin:$PATH"
 
 go version
 go env

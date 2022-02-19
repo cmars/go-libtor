@@ -1,0 +1,9 @@
+FROM ubuntu:20.04 as build
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -qq && \
+    apt-get install -y build-essential libtool golang-go git ca-certificates sudo
+
+ENV GOPATH=/go
+VOLUME /go/src/go-libtor
+

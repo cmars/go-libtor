@@ -10,6 +10,8 @@ if [ "$?" != "0" ] ; then
  exit 1
 fi
 
+export PATH="/usr/local/opt/autoconf@2.69/bin:$PATH"
+
 go version
 go env
 autoconf --version

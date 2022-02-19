@@ -731,14 +731,6 @@ func wrapTor(tgt string, lock *lockJson) (string, string, error) {
 	}
 	commit = bytes.TrimSpace(commit)
 
-	autoupdate := exec.Command("autoupdate")
-	autoupdate.Dir = tgtf
-	autoupdate.Stdout = os.Stdout
-	autoupdate.Stderr = os.Stderr
-	if err := autoupdate.Run(); err != nil {
-		return "", "", err
-	}
-
 	// Configure the library for compilation
 	autogen := exec.Command("./autogen.sh")
 	autogen.Dir = tgtf

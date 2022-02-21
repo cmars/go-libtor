@@ -3,7 +3,6 @@
 package main
 
 import (
-	"context"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -23,7 +22,7 @@ var targetFilters = map[string]string{
 	"darwin": "darwin,amd64 darwin,arm64 ios,amd64 ios,arm64",
 }
 
-func Build(ctx context.Context) error {
+func Wrap() error {
 	root, err := projectRoot()
 	if err != nil {
 		return fmt.Errorf("failed to resolve project root: %w", err)
@@ -59,6 +58,20 @@ func Build(ctx context.Context) error {
 	}
 
 	return nil
+}
+
+func Build() error {
+	root, err := projectRoot()
+	if err != nil {
+		return err
+	}
+	mg.Deps(mg.F(Setenv))
+
+	err = os.Chdir(root)
+	if err != nil {
+		return err
+	}
+	return sh.Run("go", "build", "-v", "-x", ".")
 }
 
 func Clean(root string) error {

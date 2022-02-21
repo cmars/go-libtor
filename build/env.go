@@ -7,11 +7,11 @@ import (
 )
 
 func prependEnv(key, value string) error {
-	newValue:=os.Getenv(key)
+	newValue := os.Getenv(key)
 	if key == "" {
 		newValue = value
 	} else {
-		newValue = value+":"+newValue
+		newValue = value + ":" + newValue
 	}
 	return os.Setenv(key, newValue)
-}	
+}

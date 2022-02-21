@@ -28,7 +28,10 @@ func Build(ctx context.Context) error {
 	if err != nil {
 		return fmt.Errorf("failed to resolve project root: %w", err)
 	}
-	mg.Deps(mg.F(Clean, root))
+	mg.Deps(
+		mg.F(Clean, root),
+		mg.F(Setenv),
+	)
 
 	for _, dir := range []string{"libtor", runtime.GOOS} {
 		dpath := filepath.Join(root, dir)

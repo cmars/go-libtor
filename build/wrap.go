@@ -77,11 +77,11 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	libeventVer, libeventHash, err := wrapLibevent(tgt, lock)
+	opensslVer, opensslHash, err := wrapOpenSSL(tgt, lock)
 	if err != nil {
 		panic(err)
 	}
-	opensslVer, opensslHash, err := wrapOpenSSL(tgt, lock)
+	libeventVer, libeventHash, err := wrapLibevent(tgt, lock)
 	if err != nil {
 		panic(err)
 	}

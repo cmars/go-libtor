@@ -31,7 +31,9 @@ jobs:
           fetch-depth: 0 # otherwise, push refs to dest repo will fail
 
       - name: Do Build
-        run: ./build/mage.sh sysdeps wrap archive
+        run: |-
+          ./build/mage.sh sysdeps wrap archive
+          mv /tmp/go-libtor.tar /tmp/go-libtor-linux.tar
 
       - uses: actions/upload-artifact@v2
         with:
@@ -54,7 +56,9 @@ jobs:
           fetch-depth: 0 # otherwise, push refs to dest repo will fail
 
       - name: Do Build
-        run: ./build/mage.sh sysdeps wrap archive
+        run: |-
+          ./build/mage.sh sysdeps wrap archive
+          mv /tmp/go-libtor.tar /tmp/go-libtor-darwin.tar
 
       - uses: actions/upload-artifact@v2
         with:

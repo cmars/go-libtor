@@ -8,7 +8,7 @@ import (
 
 func Sysdeps() error {
 	err := sh.Run("brew", "install",
-		"pkg-config", "autoconf@2.69", "automake",
+		"pkg-config", "autoconf@2.69", "automake", "make", "libtool",
 		"openssl@1.1")
 	if err != nil {
 		return err

@@ -67,6 +67,12 @@ func Build() error {
 	}
 	mg.Deps(mg.F(Setenv))
 
+	cwd, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+	defer os.Chdir(cwd)
+
 	err = os.Chdir(root)
 	if err != nil {
 		return err
@@ -84,6 +90,29 @@ func Clean(root string) error {
 		if err != nil {
 			return fmt.Errorf("failed to remove %q: %w", f, err)
 		}
+	}
+	return nil
+}
+
+func Archive() error {
+	root, err := projectRoot()
+	if err != nil {
+		return err
+	}
+
+	cwd, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+	defer os.Chdir(cwd)
+
+	err = os.Chdir(root + "/..")
+	if err != nil {
+		return err
+	}
+	err = sh.Run("tar", "cvf", "/tmp/go-libtor.tar", filepath.Base(root))
+	if err != nil {
+		return err
 	}
 	return nil
 }

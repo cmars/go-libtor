@@ -31,7 +31,7 @@ jobs:
           fetch-depth: 0 # otherwise, push refs to dest repo will fail
 
       - name: Do Build
-        run: ./build/mage.sh wrap archive
+        run: ./build/mage.sh sysdeps wrap archive
 
       - uses: actions/upload-artifact@v2
         with:
@@ -54,7 +54,7 @@ jobs:
           fetch-depth: 0 # otherwise, push refs to dest repo will fail
 
       - name: Do Build
-        run: ./build/mage.sh wrap archive
+        run: ./build/mage.sh sysdeps wrap archive
 
       - uses: actions/upload-artifact@v2
         with:

@@ -58,12 +58,12 @@ jobs:
       - name: Do Build
         run: |-
           ./build/mage.sh sysdeps wrap archive
-          mv /tmp/go-libtor.tar /tmp/go-libtor-darwin.tar
+          mv /tmp/go-libtor.tar /Users/runner/go-libtor-darwin.tar
 
       - uses: actions/upload-artifact@v2
         with:
           name: go-libtor-darwin
-          path: /tmp/go-libtor-darwin.tar
+          path: /Users/runner/go-libtor-darwin.tar
           if-no-files-found: error
 
   TestLinux:
@@ -92,6 +92,7 @@ jobs:
           LIBEVENT_TYPE: ${{ matrix.libevent }}
           ZLIB_TYPE: ${{ matrix.zlib }}
         run: |
+          cd go-libtor
           ./build/mage.sh testBuildMatrix "$ZLIB_TYPE" "$OPENSSL_TYPE" "$LIBEVENT_TYPE"
 
   TestMacosDynamic:
@@ -111,6 +112,7 @@ jobs:
 
       - name: Building
         run: |
+          cd go-libtor
           ./build/mage.sh testBuildDynamic
 
   TestMacosStatic:
@@ -130,6 +132,7 @@ jobs:
 
       - name: Building
         run: |
+          cd go-libtor
           ./build/mage.sh testBuildDynamic
 
 # TestIOS:

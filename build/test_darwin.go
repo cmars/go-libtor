@@ -3,7 +3,7 @@
 package main
 
 import (
-	"strings"
+	"os"
 
 	"github.com/magefile/mage/mg"
 	"github.com/magefile/mage/sh"
@@ -20,7 +20,10 @@ func TestBuildStatic() error {
 }
 
 func TestBuildDynamic() error {
-	mg.Deps(mg.F(Sysdeps))
+	mg.Deps(
+		mg.F(Sysdeps),
+		mg.F(Setenv),
+	)
 
 	err := os.Chdir("..")
 	if err != nil {

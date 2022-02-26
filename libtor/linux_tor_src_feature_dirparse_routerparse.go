@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/feature/dirparse/routerparse.c>
 */
 import "C"

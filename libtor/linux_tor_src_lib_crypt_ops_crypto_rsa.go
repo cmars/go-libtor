@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/lib/crypt_ops/crypto_rsa.c>
 */
 import "C"

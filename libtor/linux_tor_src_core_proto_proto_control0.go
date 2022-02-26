@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/core/proto/proto_control0.c>
 */
 import "C"

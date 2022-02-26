@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/lib/ctime/di_ops.c>
 */
 import "C"

@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/lib/fs/storagedir.c>
 */
 import "C"

@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/core/or/connection_edge.c>
 */
 import "C"

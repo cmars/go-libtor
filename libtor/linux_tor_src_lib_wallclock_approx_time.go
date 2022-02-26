@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/lib/wallclock/approx_time.c>
 */
 import "C"

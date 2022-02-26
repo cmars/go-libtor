@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/feature/stats/rephist.c>
 */
 import "C"

@@ -51,18 +51,8 @@ func WrapOpenssl(root string) error {
 		return err
 	}
 
-	cwd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	defer os.Chdir(cwd)
-
-	fmt.Println("entering directory:", opensslDir)
-	err = os.Chdir(opensslDir)
-	if err != nil {
-		return err
-	}
-	defer fmt.Println("leaving directory:", opensslDir)
+	popd := mustPushd(opensslDir)
+	defer popd()
 
 	// Configure the library for compilation
 	err = sh.Run("./config", "no-shared", "no-zlib", "no-asm", "no-async", "no-sctp")

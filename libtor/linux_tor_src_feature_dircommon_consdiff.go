@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/feature/dircommon/consdiff.c>
 */
 import "C"

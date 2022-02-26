@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/feature/dirclient/dlstatus.c>
 */
 import "C"

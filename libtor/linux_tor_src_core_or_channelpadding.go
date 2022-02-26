@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/core/or/channelpadding.c>
 */
 import "C"

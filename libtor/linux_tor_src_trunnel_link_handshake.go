@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/trunnel/link_handshake.c>
 */
 import "C"

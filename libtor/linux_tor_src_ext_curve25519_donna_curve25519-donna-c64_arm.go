@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/ext/curve25519_donna/curve25519-donna.c>
 */
 import "C"

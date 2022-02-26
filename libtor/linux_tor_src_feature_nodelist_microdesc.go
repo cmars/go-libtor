@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/feature/nodelist/microdesc.c>
 */
 import "C"

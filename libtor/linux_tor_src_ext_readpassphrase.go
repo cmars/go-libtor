@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/ext/readpassphrase.c>
 */
 import "C"

@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/ext/ed25519/ref10/ge_p3_tobytes.c>
 */
 import "C"

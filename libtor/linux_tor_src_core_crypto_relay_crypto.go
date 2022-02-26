@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/core/crypto/relay_crypto.c>
 */
 import "C"

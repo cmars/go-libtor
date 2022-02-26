@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/lib/crypt_ops/crypto_dh_openssl.c>
 */
 import "C"

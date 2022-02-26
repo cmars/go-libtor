@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/lib/smartlist_core/smartlist_split.c>
 */
 import "C"

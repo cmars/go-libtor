@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/trunnel/ed25519_cert.c>
 */
 import "C"

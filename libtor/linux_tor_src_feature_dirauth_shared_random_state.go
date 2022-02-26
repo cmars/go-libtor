@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/feature/dirauth/shared_random_state.c>
 */
 import "C"

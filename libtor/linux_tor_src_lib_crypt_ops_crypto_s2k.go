@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/lib/crypt_ops/crypto_s2k.c>
 */
 import "C"

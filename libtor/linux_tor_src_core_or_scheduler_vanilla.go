@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/core/or/scheduler_vanilla.c>
 */
 import "C"

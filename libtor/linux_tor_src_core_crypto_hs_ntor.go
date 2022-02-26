@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/core/crypto/hs_ntor.c>
 */
 import "C"

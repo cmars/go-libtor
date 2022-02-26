@@ -18,7 +18,7 @@ import (
 
 const (
 	TorURL = "https://git.torproject.org/tor.git"
-	TorTag = "release-0.3.5"
+	TorTag = "release-0.4.6"
 )
 
 // wrapTor clones the tor library into the local repository and wraps it into
@@ -38,18 +38,8 @@ func WrapTor(root string) error {
 		return fmt.Errorf("git clone failed: %w", err)
 	}
 
-	cwd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	defer os.Chdir(cwd)
-
-	fmt.Println("entering directory:", torDir)
-	err = os.Chdir(torDir)
-	if err != nil {
-		return err
-	}
-	defer fmt.Println("leaving directory:", torDir)
+	popd := mustPushd(torDir)
+	defer popd()
 
 	err = sh.Run("./autogen.sh")
 	if err != nil {
@@ -72,7 +62,7 @@ func WrapTor(root string) error {
 	if err != nil {
 		return err
 	}
-	deps := regexp.MustCompile("(?m)([a-z0-9_/-]+)\\.c$").FindAllStringSubmatch(string(makeOutput), -1)
+	deps := regexp.MustCompile("(?m)([a-z0-9_/-]+)\\.c").FindAllStringSubmatch(string(makeOutput), -1)
 
 	// Wipe everything from the library that's non-essential
 	files, err := ioutil.ReadDir(".")
@@ -92,7 +82,7 @@ func WrapTor(root string) error {
 			continue
 		}
 		// Remove all files apart from the license
-		if file.Name() == "LICENSE" {
+		if file.Name() == "LICENSE" || file.Name() == "orconfig.h" {
 			continue
 		}
 		err := os.Remove(file.Name())
@@ -107,7 +97,8 @@ func WrapTor(root string) error {
 	}
 	for _, file := range files {
 		if file.IsDir() {
-			if file.Name() == "app" || file.Name() == "core" || file.Name() == "ext" || file.Name() == "feature" || file.Name() == "lib" || file.Name() == "trunnel" || file.Name() == "win32" {
+			switch file.Name() {
+			case "app", "core", "ext", "feature", "lib", "trunnel", "win32":
 				continue
 			}
 			err := os.RemoveAll(filepath.Join("src", file.Name()))
@@ -137,15 +128,6 @@ func WrapTor(root string) error {
 			return nil
 		},
 	); err != nil {
-		return err
-	}
-	// Fix the string compatibility source to load the correct code
-	blob, err := ioutil.ReadFile(filepath.Join("src", "lib", "string", "compat_string.c"))
-	if err != nil {
-		return err
-	}
-	err = ioutil.WriteFile(filepath.Join("src", "lib", "string", "compat_string.c"), bytes.Replace(blob, []byte("strlcpy.c"), []byte("ext/strlcpy.c"), -1), 0644)
-	if err != nil {
 		return err
 	}
 
@@ -253,7 +235,7 @@ func WrapTor(root string) error {
 			return err
 		}
 	}
-	blob, err = ioutil.ReadFile(filepath.Join(root, "config", "tor", "micro-revision.i"))
+	blob, err := ioutil.ReadFile(filepath.Join(root, "config", "tor", "micro-revision.i"))
 	if err != nil {
 		return err
 	}
@@ -313,8 +295,6 @@ var torTemplate = `// go-libtor - Self-contained Tor from Go
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../{{.File}}.c>
 */
 import "C"

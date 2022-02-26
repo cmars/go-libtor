@@ -3,13 +3,19 @@
 package main
 
 import (
-	"os"
 	"strings"
 
+	"github.com/magefile/mage/mg"
 	"github.com/magefile/mage/sh"
 )
 
+// TestBuild sequentially builds with the matrix of linking options (static,
+// dynamic) on each wrapped library dependency (zlib, openssl, libevent).
 func TestBuild() error {
+	mg.Deps(
+		mg.F(Setenv),
+	)
+
 	var err error
 	err = TestBuildMatrix("sta", "sta", "sta")
 	if err != nil {
@@ -79,10 +85,8 @@ func TestBuildMatrix(zlibType, opensslType, libeventType string) error {
 		}
 	}
 
-	err := os.Chdir("..")
-	if err != nil {
-		return err
-	}
+	popd := mustPushd("..")
+	defer popd()
 
 	return sh.Run("go", "build", "-v", "-x", `-tags="`+strings.Join(staticTags, ",")+`"`, ".")
 }

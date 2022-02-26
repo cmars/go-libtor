@@ -144,12 +144,6 @@
 /* Define to 1 if you have the <mach/mach_time.h> header file. */
 /* #undef HAVE_MACH_MACH_TIME_H */
 
-/* Define if the system has mbedtls */
-/* #undef HAVE_MBEDTLS */
-
-/* Define to 1 if you have the <mbedtls/ssl.h> header file. */
-/* #undef HAVE_MBEDTLS_SSL_H */
-
 /* Define to 1 if you have the <memory.h> header file. */
 #define HAVE_MEMORY_H 1
 
@@ -201,9 +195,6 @@
 /* Define if we have pthreads on this system */
 #define HAVE_PTHREADS 1
 
-/* Define to 1 if you have the `pthread_mutexattr_setprotocol' function. */
-#define HAVE_PTHREAD_MUTEXATTR_SETPROTOCOL 1
-
 /* Define to 1 if you have the `putenv' function. */
 #define HAVE_PUTENV 1
 
@@ -231,6 +222,9 @@
 /* Define to 1 if you have the `signal' function. */
 #define HAVE_SIGNAL 1
 
+/* Define to 1 if you have the `splice' function. */
+#define HAVE_SPLICE 1
+
 /* Define to 1 if you have the <stdarg.h> header file. */
 #define HAVE_STDARG_H 1
 
@@ -254,9 +248,6 @@
 
 /* Define to 1 if you have the `strsep' function. */
 #define HAVE_STRSEP 1
-
-/* Define to 1 if you have the `strsignal' function. */
-#define HAVE_STRSIGNAL 1
 
 /* Define to 1 if you have the `strtok_r' function. */
 #define HAVE_STRTOK_R 1
@@ -411,8 +402,8 @@
 /* Define to 1 if you have the `usleep' function. */
 #define HAVE_USLEEP 1
 
-/* Define if your system supports the wepoll module */
-/* #undef HAVE_WEPOLL */
+/* Define to 1 if you have the `vasprintf' function. */
+#define HAVE_VASPRINTF 1
 
 /* Define if kqueue works correctly with pipes */
 /* #undef HAVE_WORKING_KQUEUE */
@@ -436,7 +427,7 @@
 #define LT_OBJDIR ".libs/"
 
 /* Numeric representation of the version */
-#define NUMERIC_VERSION 0x02020001
+#define NUMERIC_VERSION 0x02010c00
 
 /* Name of package */
 #define PACKAGE "libevent"
@@ -448,7 +439,7 @@
 #define PACKAGE_NAME "libevent"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "libevent 2.2.0-alpha-dev"
+#define PACKAGE_STRING "libevent 2.1.12-stable"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "libevent"
@@ -457,7 +448,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "2.2.0-alpha-dev"
+#define PACKAGE_VERSION "2.1.12-stable"
 
 /* Define to necessary symbol if this constant uses a non-standard name on
    your system. */
@@ -519,7 +510,7 @@
 
 
 /* Version number of package */
-#define VERSION "2.2.0-alpha-dev"
+#define VERSION "2.1.12-stable"
 
 /* Enable large inode numbers on Mac OS X 10.5.  */
 #ifndef _DARWIN_USE_64_BIT_INODE

@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/feature/nodelist/fmt_routerstatus.c>
 */
 import "C"

@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/ext/keccak-tiny/keccak-tiny-unrolled.c>
 */
 import "C"

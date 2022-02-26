@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/ext/ed25519/donna/ed25519_tor.c>
 */
 import "C"

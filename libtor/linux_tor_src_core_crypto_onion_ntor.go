@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/core/crypto/onion_ntor.c>
 */
 import "C"

@@ -16,10 +16,54 @@ func projectRoot() (string, error) {
 	return filepath.Abs("..")
 }
 
+func mustPushd(path string) func() {
+	path, err := filepath.Abs(path)
+	if err != nil {
+		panic(err)
+	}
+	cwd, err := os.Getwd()
+	if err != nil {
+		panic(err)
+	}
+	err = os.Chdir(path)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("entering directory: %s\n", path)
+	return func() {
+		err := os.Chdir(cwd)
+		if err != nil {
+			panic(err)
+		}
+		fmt.Printf("leaving directory: %s\n", path)
+	}
+}
+
 // targetFilters maps a build target to the builds tags to apply to it
 var targetFilters = map[string]string{
 	"linux":  "linux android",
 	"darwin": "darwin,amd64 darwin,arm64 ios,amd64 ios,arm64",
+}
+
+func All() error {
+	var err error
+	err = Sysdeps()
+	if err != nil {
+		return err
+	}
+	err = Wrap()
+	if err != nil {
+		return err
+	}
+	err = TestBuildDynamic()
+	if err != nil {
+		return err
+	}
+	err = TestBuildStatic()
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func Wrap() error {
@@ -60,26 +104,6 @@ func Wrap() error {
 	return nil
 }
 
-func Build() error {
-	root, err := projectRoot()
-	if err != nil {
-		return err
-	}
-	mg.Deps(mg.F(Setenv))
-
-	cwd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	defer os.Chdir(cwd)
-
-	err = os.Chdir(root)
-	if err != nil {
-		return err
-	}
-	return sh.Run("go", "build", "-v", "-x", ".")
-}
-
 func Clean(root string) error {
 	wrappedFiles, err := filepath.Glob(filepath.Join(root, "libtor", runtime.GOOS+"_*"))
 	if err != nil {
@@ -100,16 +124,8 @@ func Archive() error {
 		return err
 	}
 
-	cwd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	defer os.Chdir(cwd)
-
-	err = os.Chdir(root + "/..")
-	if err != nil {
-		return err
-	}
+	popd := mustPushd(root + "/..")
+	defer popd()
 	err = sh.Run("tar", "cvf", "/tmp/go-libtor.tar", filepath.Base(root))
 	if err != nil {
 		return err

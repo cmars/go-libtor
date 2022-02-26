@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/trunnel/hs/cell_introduce1.c>
 */
 import "C"

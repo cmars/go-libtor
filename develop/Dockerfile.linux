@@ -1,10 +1,15 @@
-FROM ubuntu:20.04 as build
-ENV DEBIAN_FRONTEND=noninteractive
+FROM golang:1.17 as golang
 
+FROM ubuntu:20.04 as build
+COPY --from=golang /usr/local/go/ /usr/local/go/
+ENV PATH=/usr/local/go/bin:$PATH
+
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -qq && \
-    apt-get install -y build-essential libtool golang-go git ca-certificates sudo
+    apt-get install --no-install-recommends -y \
+        automake autoconf build-essential ca-certificates \
+        git libtool sudo
 
 ENV GOPATH=/go
 VOLUME /go/src/go-libtor
 WORKDIR /go/src/go-libtor
-

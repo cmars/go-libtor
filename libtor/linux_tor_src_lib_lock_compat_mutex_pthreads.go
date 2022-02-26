@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/lib/lock/compat_mutex_pthreads.c>
 */
 import "C"

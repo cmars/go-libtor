@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/trunnel/hs/cell_rendezvous.c>
 */
 import "C"

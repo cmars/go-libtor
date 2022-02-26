@@ -42,18 +42,8 @@ func WrapLibevent(root string) error {
 		return fmt.Errorf("git clone failed: %w", err)
 	}
 
-	cwd, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	defer os.Chdir(cwd)
-
-	fmt.Println("entering directory:", libeventDir)
-	err = os.Chdir(libeventDir)
-	if err != nil {
-		return err
-	}
-	defer fmt.Println("leaving directory:", libeventDir)
+	popd := mustPushd(libeventDir)
+	defer popd()
 
 	err = sh.Run("./autogen.sh")
 	if err != nil {

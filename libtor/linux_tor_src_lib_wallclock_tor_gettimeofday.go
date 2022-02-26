@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/lib/wallclock/tor_gettimeofday.c>
 */
 import "C"

@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/lib/wallclock/time_to_tm.c>
 */
 import "C"

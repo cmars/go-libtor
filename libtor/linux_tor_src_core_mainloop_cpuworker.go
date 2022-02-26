@@ -5,8 +5,6 @@
 package libtor
 
 /*
-#define BUILDDIR ""
-
 #include <../src/core/mainloop/cpuworker.c>
 */
 import "C"

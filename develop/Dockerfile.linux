@@ -6,4 +6,5 @@ RUN apt-get update -qq && \
 
 ENV GOPATH=/go
 VOLUME /go/src/go-libtor
+WORKDIR /go/src/go-libtor
 

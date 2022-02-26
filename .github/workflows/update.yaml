@@ -94,7 +94,7 @@ jobs:
         run: |
           tar xf go-libtor-linux.tar
           cd go-libtor
-          ./build/mage.sh testBuildMatrix "$ZLIB_TYPE" "$OPENSSL_TYPE" "$LIBEVENT_TYPE"
+          ./build/mage.sh sysdeps testBuildMatrix "$ZLIB_TYPE" "$OPENSSL_TYPE" "$LIBEVENT_TYPE"
 
   TestMacosDynamic:
     runs-on: macos-latest
